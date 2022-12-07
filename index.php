@@ -12,6 +12,7 @@
 
 define('ARQ_PRINCIPAL', __FILE__);
 
+require_once('includes/functions.php');
 require_once('includes/shortcode_lightbox.php');
 
 //assets

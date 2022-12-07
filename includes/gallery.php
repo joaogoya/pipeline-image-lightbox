@@ -1,23 +1,25 @@
 <div class="row">
+    <?php
 
-    <div class="col-12">
-        <h2 style="text-align:center">Lightbox</h2>
-    </div>
+    //busca o array de ids de imgs da galeria
+    $images_ids = pipe_get_galery_from_afc(get_the_ID(), 'galeria');
 
-    <div class="col-sm-3">
-        <img src="<?php echo plugins_url(); ?>/pipeline-img-lightbox/assets/img/asd.jpg" class="click-modal hover-shadow cursor" data-index="1">
-    </div>
+    //percorre o array
+    foreach ($images_ids as $key => $image_id) :
 
-    <div class="col-sm-3">
-        <img src="<?php echo plugins_url(); ?>/pipeline-img-lightbox/assets/img/myhq-workspaces-NEFgreoVtig-unsplash.jpg" class="click-modal hover-shadow cursor" data-index="1">
-    </div>
+        //busca os attrs da img
+        $img_atts = wp_get_attachment_image_src($image_id, 'full');
 
-    <div class="col-sm-3">
-        <img src="<?php echo plugins_url(); ?>/pipeline-img-lightbox/assets/img/pexels-fauxels-3182826.jpg" class="click-modal hover-shadow cursor" data-index="1">
-    </div>
+        //seta o src
+        $img_src = $img_atts[0];
 
-    <div class="col-sm-3">
-        <img src="<?php echo plugins_url(); ?>/pipeline-img-lightbox/assets/img/robin-worrall-FPt10LXK0cg-unsplash.jpg" class="click-modal hover-shadow cursor" data-index="1">
-    </div>
+        //seta o data-indes
+        $data_index = $key + 1;
+    ?>
 
+        <div class="col-sm-3">
+            <img src="<?php echo $img_src; ?>" class="click-modal hover-shadow cursor" data-index="<?php echo $data_index; ?>">
+        </div>
+
+    <?php endforeach; ?>
 </div>

@@ -6,27 +6,33 @@
 
     <div class="modal-content">
 
-        <!-- Images -->
-        <div class="mySlides">
-            <div class="numbertext">1 / 4</div>
-            <img data-index="1" class="slide" src="<?php echo plugins_url(); ?>/pipeline-img-lightbox/assets/img/asd.jpg"  style="width:100%">
-        </div>
+        <?php
+        //busca o array de ids de imgs da galeria
+        $images_ids = pipe_get_galery_from_afc(get_the_ID(), 'galeria');
 
-        <div class="mySlides">
-            <div class="numbertext">2 / 4</div>
-            <img data-index="2" class="slide" src="<?php echo plugins_url(); ?>/pipeline-img-lightbox/assets/img/myhq-workspaces-NEFgreoVtig-unsplash.jpg"  style="width:100%">
-        </div>
+        //seta tamanho do array para caption
+        $total_images = count($images_ids);
 
-        <div class="mySlides">
-            <div class="numbertext">3 / 4</div>
-            <img data-index="3" class="slide" src="<?php echo plugins_url(); ?>/pipeline-img-lightbox/assets/img/pexels-fauxels-3182826.jpg"  style="width:100%">
-        </div>
+        //percorre o array
+        foreach ($images_ids as $key => $image_id) :
 
-        <div class="mySlides">
-            <div class="numbertext">4 / 4</div>
-            <img data-index="4" class="slide" src="<?php echo plugins_url(); ?>/pipeline-img-lightbox/assets/img/robin-worrall-FPt10LXK0cg-unsplash.jpg"  style="width:100%">
-        </div>
+            //busca os attrs da img
+            $img_atts = wp_get_attachment_image_src($image_id, 'full');
 
+            //seta o src
+            $img_src = $img_atts[0];
+
+            //seta o data-index
+            $data_index = $key + 1;
+        ?>
+
+            <!-- Images -->
+            <div class="mySlides">
+                <div class="numbertext"><?php echo $data_index; ?> / <?php echo $total_images; ?></div>
+                <img data-index="<?php echo $data_index; ?>" class="slide" src="<?php echo $img_src; ?>" style="width:100%">
+            </div>
+
+        <?php endforeach; ?>
 
         <!-- btns -->
         <a class="prev change-slide">&#10094;</a>
