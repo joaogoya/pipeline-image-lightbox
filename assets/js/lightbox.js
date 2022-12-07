@@ -40,6 +40,9 @@ $(document).ready(function () {
     //abre a modal
     $("#myModal").show();
 
+    // add class ao body
+    document.body.classList.add("body-modal-open");
+
     //seta o elemento clicado
     var clicked_img = $(this);
 
@@ -54,6 +57,9 @@ $(document).ready(function () {
   //btn fechar
   $(".close").click(function () {
     $("#myModal").hide();
+
+        // remove class do body
+        document.body.classList.remove("body-modal-open");
   });
 
   //btns next e prev

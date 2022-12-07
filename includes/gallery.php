@@ -17,9 +17,14 @@
         $data_index = $key + 1;
     ?>
 
-        <div class="col-sm-3">
-            <img src="<?php echo $img_src; ?>" class="click-modal hover-shadow cursor" data-index="<?php echo $data_index; ?>">
+        <div class="col-sm-3 my-auto">      
+            <img src="<?php echo $img_src; ?>" class="click-modal hover-shadow cursor " data-index="<?php echo $data_index; ?>">
         </div>
 
-    <?php endforeach; ?>
+        <!-- A cada 4 colunas cria uma nova row -->
+        <?php if(($key + 1) % 4 == 0): ?>
+        </div>
+        <div class="row">
+
+    <?php endif; endforeach; ?>
 </div>
