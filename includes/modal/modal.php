@@ -4,11 +4,9 @@
     <!-- close button -->
     <span class="close">&times;</span>
 
-    <div class="modal-content">
+    <div id="img-wrap" class="modal-content">
 
-        <?php
-        //busca o array de ids de imgs da galeria
-        $images_ids = pipe_get_galery_from_afc(get_the_ID(), 'galeria');
+        <?php        
 
         //seta tamanho do array para caption
         $total_images = count($images_ids);
@@ -24,12 +22,32 @@
 
             //seta o data-index
             $data_index = $key + 1;
+
+            // texto alternativo
+            $image_alt = get_post_meta($image_id, '_wp_attachment_image_alt', TRUE);
+
+            // Title
+            $image_title = get_the_title($image_id);
+
+            // Legenda
+            $img_subtitle = wp_get_attachment_caption($image_id);
         ?>
 
             <!-- Images -->
             <div class="mySlides">
+
                 <div class="numbertext"><?php echo $data_index; ?> / <?php echo $total_images; ?></div>
-                <img data-index="<?php echo $data_index; ?>" class="slide" src="<?php echo $img_src; ?>" style="width:100%">
+
+                <img title="<?php echo $image_title; ?>" alt="<?php echo $image_alt; ?>" data-index="<?php echo $data_index; ?>" class="slide" src="<?php echo $img_src; ?>" style="width:100%">
+
+                <!-- caption -->
+                <?php if ($img_subtitle) : ?>
+                    <div class="caption-container">
+                        <p id="caption">
+                            <?php echo  $img_subtitle; ?>
+                        </p>
+                    </div>
+                <?php endif; ?>
             </div>
 
         <?php endforeach; ?>
@@ -37,11 +55,6 @@
         <!-- btns -->
         <a class="prev change-slide">&#10094;</a>
         <a class="next change-slide">&#10095;</a>
-
-        <!-- caption -->
-        <div class="caption-container">
-            <p id="caption"></p>
-        </div>
 
     </div> <!-- modal-content -->
 </div><!-- modal -->

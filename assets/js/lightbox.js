@@ -30,13 +30,11 @@ showSlides = {
 };
 
 $(document).ready(function () {
-  
   //inicializa o index na modal
   showSlides.execute(slideIndex);
 
   //clique em alguma img
   $(".click-modal").click(function () {
-
     //abre a modal
     $("#myModal").show();
 
@@ -58,8 +56,8 @@ $(document).ready(function () {
   $(".close").click(function () {
     $("#myModal").hide();
 
-        // remove class do body
-        document.body.classList.remove("body-modal-open");
+    // remove class do body
+    document.body.classList.remove("body-modal-open");
   });
 
   //btns next e prev
@@ -70,7 +68,20 @@ $(document).ready(function () {
   $(".prev").click(function () {
     showSlides.execute((slideIndex += -1));
   });
+
+  //fecha modal clique fora da img
+  $("#myModal").click(function () {
+    $("#myModal").hide();
+    // remove class do body
+    document.body.classList.remove("body-modal-open");
+  });
+
+  $("#img-wrap").click(function (event) {
+    event.stopPropagation();
+  });
 }); // fim document ready
+
+//fecha modal clique fora da img
 
 /*
   A lib mobile do jq gerou conflito com o painel admin do wp

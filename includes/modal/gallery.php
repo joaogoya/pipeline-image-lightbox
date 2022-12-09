@@ -1,9 +1,6 @@
 <div class="row">
     <?php
 
-    //busca o array de ids de imgs da galeria
-    $images_ids = pipe_get_galery_from_afc(get_the_ID(), 'galeria');
-
     //percorre o array
     foreach ($images_ids as $key => $image_id) :
 
@@ -15,10 +12,17 @@
 
         //seta o data-indes
         $data_index = $key + 1;
+      
+        // textto alternativo      
+        $image_alt = get_post_meta($image_id, '_wp_attachment_image_alt', TRUE);
+
+        // Title
+        $image_title = get_the_title($image_id);
+           
     ?>
 
         <div class="col-sm-3 my-auto">      
-            <img src="<?php echo $img_src; ?>" class="click-modal hover-shadow cursor " data-index="<?php echo $data_index; ?>">
+            <img alt="<?php echo $image_alt; ?>" title="<?php echo $image_title; ?>" src="<?php echo $img_src; ?>" class="click-modal hover-shadow cursor " data-index="<?php echo $data_index; ?>">
         </div>
 
         <!-- A cada 4 colunas cria uma nova row -->

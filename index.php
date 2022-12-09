@@ -12,8 +12,9 @@
 
 define('ARQ_PRINCIPAL', __FILE__);
 
-require_once('includes/functions.php');
-require_once('includes/shortcode_lightbox.php');
+require_once('includes/custom-post.php');
+require_once('includes/custom-fields.php');
+require_once('includes/modal/shortcode_lightbox.php');
 
 //assets
 function pipe_add_scripts_lightbox() //scripts do plugin
